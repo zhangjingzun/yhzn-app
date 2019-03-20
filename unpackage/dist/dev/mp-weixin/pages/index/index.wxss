@@ -1,0 +1,41 @@
+@import "../../common/vendor.wxss";
+
+.index.data-v-cc51bbb8 {
+  background-color: #f2f2f2;
+}
+.index .swiper-box.data-v-cc51bbb8 {
+  width: 100%;
+  height: 360rpx;
+}
+.index .swiper-box .swiper-item.data-v-cc51bbb8 {
+  width: 100%;
+  height: 360rpx;
+}
+.index .swiper-box image.data-v-cc51bbb8 {
+  width: 100%;
+  height: 360rpx;
+}
+.index .index-btn.data-v-cc51bbb8 {
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 20rpx 30rpx 50rpx 30rpx;
+}
+.index .index-btn view.data-v-cc51bbb8 {
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  background-color: #583213;
+}
+.product-title.data-v-7cde2bc8 {
+  line-height: 85rpx;
+  color: #583213;
+  background-color: #fff;
+  padding: 0 20rpx;
+  height: 85rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border-bottom: 2rpx solid #e6e6e6;
+}

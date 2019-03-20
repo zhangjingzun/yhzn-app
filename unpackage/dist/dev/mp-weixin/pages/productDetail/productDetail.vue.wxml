@@ -1,0 +1,29 @@
+<import src="/components/wxParseCompontent/wxParse.vue.wxml" />
+<template name="5991a91a">
+  <scroll-view scroll-y="true" class="_scroll-view data-v-59a97580 productDetail">
+    <view class="_view data-v-59a97580 detail-img">
+      <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{4000}}" duration="{{1000}}" class="_swiper data-v-59a97580">
+        <swiper-item class="_swiper-item data-v-59a97580">
+          <image src="http://img0.imgtn.bdimg.com/it/u=2844949136,2031078830&fm=27&gp=0.jpg" mode class="_image data-v-59a97580"></image>
+        </swiper-item>
+        <swiper-item class="_swiper-item data-v-59a97580">
+          <image src="http://img0.imgtn.bdimg.com/it/u=2844949136,2031078830&fm=27&gp=0.jpg" mode class="_image data-v-59a97580"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="_view data-v-59a97580 detail-title"> 产品一产品一产品一 </view>
+    <view class="_view data-v-59a97580 text-area">
+      <template data="{{...$root['0'], ...$root[$kk+'ITP-2'],$root}}" is="8be2272e"></template>
+    </view>
+    <view class="_view data-v-59a97580 detail-tabs">
+      <view class="_view data-v-59a97580 tabs-item active"> 产品详情
+        <view class="_view data-v-59a97580 bottom-icon">
+          <text class="_text data-v-59a97580 icon"></text>
+        </view>
+      </view>
+    </view>
+    <view class="_view data-v-59a97580 text-area">
+      <template data="{{...$root['0'], ...$root[$kk+'37f-3'],$root}}" is="8be2272e"></template>
+    </view>
+  </scroll-view>
+</template>

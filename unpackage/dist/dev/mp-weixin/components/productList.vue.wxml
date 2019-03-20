@@ -1,0 +1,28 @@
+<template name="49b3fc09">
+  <view class="_view data-v-49fa0d8a shopList">
+    <navigator hover-class="none" url="{{'../productDetail/productDetail?id=1'}}" class="_navigator data-v-49fa0d8a shop-item">
+      <image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode class="_image data-v-49fa0d8a"></image>
+      <view class="_view data-v-49fa0d8a item-desc">
+        <view class="_view data-v-49fa0d8a desc-title"> 商品标题商品标题商品标题商品标题 </view>
+      </view>
+    </navigator>
+    <navigator hover-class="none" url="{{'../productDetail/productDetail?id=1'}}" class="_navigator data-v-49fa0d8a shop-item">
+      <image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode class="_image data-v-49fa0d8a"></image>
+      <view class="_view data-v-49fa0d8a item-desc">
+        <view class="_view data-v-49fa0d8a desc-title"> 商品标题商品标题商品标题商品标题 </view>
+      </view>
+    </navigator>
+    <navigator hover-class="none" url="{{'../productDetail/productDetail?id=1'}}" class="_navigator data-v-49fa0d8a shop-item">
+      <image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode class="_image data-v-49fa0d8a"></image>
+      <view class="_view data-v-49fa0d8a item-desc">
+        <view class="_view data-v-49fa0d8a desc-title"> 商品标题商品标题商品标题商品标题 </view>
+      </view>
+    </navigator>
+    <navigator hover-class="none" url="{{'../productDetail/productDetail?id=1'}}" class="_navigator data-v-49fa0d8a shop-item">
+      <image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode class="_image data-v-49fa0d8a"></image>
+      <view class="_view data-v-49fa0d8a item-desc">
+        <view class="_view data-v-49fa0d8a desc-title"> 商品标题商品标题商品标题商品标题 </view>
+      </view>
+    </navigator>
+  </view>
+</template>

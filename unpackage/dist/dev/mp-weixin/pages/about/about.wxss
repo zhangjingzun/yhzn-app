@@ -1,0 +1,57 @@
+@import "../../common/vendor.wxss";
+
+.about .about-banner image.data-v-7c07545a {
+  width: 100%;
+  display: block;
+  height: 360rpx;
+}
+.about .about-container.data-v-7c07545a {
+  padding: 0 20rpx;
+}
+.about .about-tabs.data-v-7c07545a {
+  padding: 0 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  border-bottom: 2rpx solid #dbdbdb;
+}
+.about .about-tabs .tabs-btn.data-v-7c07545a {
+  width: 200rpx;
+  text-align: center;
+  line-height: 65rpx;
+  font-size: 28rpx;
+  color: #583213;
+  border-bottom: 4rpx solid transparent;
+}
+.about .about-tabs .tabs-btn.active.data-v-7c07545a {
+  border-bottom: 4rpx solid #583213;
+}
+.about .about-richtext.data-v-7c07545a {
+  padding: 48rpx 20rpx;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #4C4B4B;
+}
+.about .about-desc.data-v-7c07545a {
+  margin: 0 20rpx;
+  height: 90rpx;
+  border-bottom: 2rpx solid #eeeeee;
+  font-size: 28rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: relative;
+  color: #e77817;
+}
+.about .about-desc text.data-v-7c07545a {
+  color: #3c3c3c;
+}
+.about .about-desc image.data-v-7c07545a {
+  position: absolute;
+  width: 14rpx;
+  height: 24rpx;
+  right: 0;
+}

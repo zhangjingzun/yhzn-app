@@ -1,0 +1,35 @@
+<import src="/components/wxParseCompontent/wxParse.vue.wxml" />
+<template name="7b84ed98">
+  <view class="_view data-v-7c07545a about">
+    <view class="_view data-v-7c07545a about-banner">
+      <image src="http://img0.imgtn.bdimg.com/it/u=2844949136,2031078830&fm=27&gp=0.jpg" mode class="_image data-v-7c07545a"></image>
+    </view>
+    <view class="_view data-v-7c07545a about-tabs">
+      <view class="_view data-v-7c07545a tabs-btn {{[tabsIndex == 0 ? 'active' : '']}}" bindtap="handleProxy" data-eventid="{{'ZVr-0'}}" data-comkey="{{$k}}"> 公司简介 </view>
+      <view class="_view data-v-7c07545a tabs-btn {{[tabsIndex == 1 ? 'active' : '']}}" bindtap="handleProxy" data-eventid="{{'MGo-1'}}" data-comkey="{{$k}}"> 联系我们 </view>
+    </view>
+    <view class="_view data-v-7c07545a about-container">
+      <view class="_view data-v-7c07545a about-content" wx:if="{{tabsIndex == 0}}">
+        <view class="_view data-v-7c07545a about-richtext">
+          <template data="{{...$root['0'], ...$root[$kk+'pzN-0'],$root}}" is="8be2272e"></template>
+        </view>
+      </view>
+      <view class="_view data-v-7c07545a about-content" wx:if="{{tabsIndex == 1}}">
+        <view class="_view data-v-7c07545a about-desc"> 公司名称：
+          <text class="_text data-v-7c07545a">公司名称</text>
+        </view>
+        <view class="_view data-v-7c07545a about-desc"> 联系人：
+          <text class="_text data-v-7c07545a">联系人</text>
+        </view>
+        <view class="_view data-v-7c07545a about-desc" bindtap="handleProxy" data-eventid="{{'3qv-2'}}" data-comkey="{{$k}}"> 联系手机：
+          <text class="_text data-v-7c07545a">13193690998</text>
+          <image src="../../static/images/jiantou.png" mode class="_image data-v-7c07545a"></image>
+        </view>
+        <view class="_view data-v-7c07545a about-desc" bindtap="handleProxy" data-eventid="{{'Toh-3'}}" data-comkey="{{$k}}"> 联系地址：
+          <text class="_text data-v-7c07545a">地址地址地址地址地址</text>
+          <image src="../../static/images/jiantou.png" mode class="_image data-v-7c07545a"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

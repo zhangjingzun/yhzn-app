@@ -1,0 +1,26 @@
+@import "../../common/vendor.wxss";
+
+.product-tabs.data-v-1f502fc4 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  border-bottom: 2rpx solid #dbdbdb;
+  height: 80rpx;
+  white-space: nowrap;
+}
+.product-tabs .tabs-item.data-v-1f502fc4 {
+  display: inline-block;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #583213;
+  font-weight: bold;
+  text-align: center;
+  line-height: 76rpx;
+  box-sizing: border-box;
+  margin: 0 15rpx;
+  border-bottom: 4rpx solid transparent;
+}
+.product-tabs .tabs-item.active.data-v-1f502fc4 {
+  border-bottom: 4rpx solid #583213;
+}
