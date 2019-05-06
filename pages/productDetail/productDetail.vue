@@ -2,19 +2,33 @@
 	<scroll-view scroll-y="true" class="productDetail">
 		<view class="detail-img">
 			<swiper :indicator-dots="true" :autoplay="true" :interval="4000" :duration="1000">
-				<swiper-item>
-					<image src="http://img0.imgtn.bdimg.com/it/u=2844949136,2031078830&fm=27&gp=0.jpg" mode=""></image>
-				</swiper-item>
-				<swiper-item>
-					<image src="http://img0.imgtn.bdimg.com/it/u=2844949136,2031078830&fm=27&gp=0.jpg" mode=""></image>
+				<swiper-item v-for="(item, index) in info.shop_img" :key="index">
+					<image :src="item" mode=""></image>
 				</swiper-item>
 			</swiper>
 		</view>
 		<view class="detail-title">
-			产品一产品一产品一
+			<view class="title-text">
+				{{info.shop_name}}
+			</view>
 		</view>
-		<view class="text-area">
-			<wxParse :content="htmlString" :imageProp="imageProp"/>
+		<view class="detail-desc">
+			<view class="desc-text">
+				{{info.shop_desc}}
+			</view>
+		</view>
+		<view class="detail-info">
+			<view class="info-box">
+				<view class="info-item info-old-price">
+					原价:{{info.shop_old_price}}元
+				</view>
+				<view class="info-item info-price">
+					现价:{{info.shop_price}}元
+				</view>
+			</view>
+			<view class="info-count">
+				88人已咨询
+			</view>
 		</view>
 		<view class="detail-tabs">
 			<view class="tabs-item active">
@@ -25,7 +39,10 @@
 			</view>
 		</view>
 		<view class="text-area">
-			<wxParse :content="htmlString" :imageProp="imageProp" />
+			<image v-for="(item, index) in info.shop_detail" :key="index" :src="item" mode="widthFix"></image>
+		</view>
+		<view class="submit-button">
+			点我咨询低价
 		</view>
 	</scroll-view>
 </template>
@@ -61,38 +78,47 @@
 				util.returnPrev();
 			}
 		},
+		methods:{
+			getInfo(id) {
+				let _this = this
+				util.ajax({url: config.url.productDetail, data: {id: id}}).then((res) => {
+					console.log(res)
+					if (res.code == 0) {
+						let data = res.data
+						let shop_img = data.shop_img
+						let shopImg = shop_img.split(',')
+						data.shop_img = shopImg
+						
+						let shop_detail = data.shop_detail
+						let detailImg = shop_detail.split(',')
+						data.shop_detail = detailImg
+						_this.info = data
+					} else {
+						util.showTost('网络错误，请稍后重试')
+					}
+				})
+			}
+		},
 		onShareAppMessage:function(){
 			
-		},
-		methods:{
-			moreImageFuc() {
-// 				let that = this;
-// 				let moreImage = this.info.news_moreImg.split("|");
-// 				this.moreImage = moreImage;
-			},
-			getInfo(id) {
-// 				let that = this;
-// 				util.ajax({url: config.url.article_detail, data: {a_id: id}}).then((res) => {
-// 					that.info = res;
-// 					that.moreImageFuc();
-// 					that.htmlString = res.news_technology;
-// 				});
-			},
-			changeIndex(index) {
-// 				this.tabIndex = index;
-// 				if(index == 0) {
-// 					this.htmlString = this.info.news_technology;
-// 				}else if(index == 1) {
-// 					this.htmlString = this.info.news_application;
-// 				}else if(index == 2) {
-// 					this.htmlString = this.info.news_oil_wear;
-// 				}
-			},
 		},
 	}
 </script>
 
 <style lang="less" scoped>
+.submit-button{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 80upx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #483213;
+	color: #fff;
+	font-size: 30upx;
+	width: 100%;
+}
 .productDetail{
 	background-color: #fff;
 	min-height: 100%;
@@ -105,7 +131,6 @@
 .detail-tabs{
 	display: flex;
 	background-color: #fff;
-
 	.tabs-item{
 		flex: 1;
 		height: 90upx;
@@ -147,6 +172,52 @@
 		}
 	}
 }
+.detail-desc{
+	padding: 20upx;
+	font-size: 28upx;
+	color: #333333;
+	.desc-text{
+		line-height: 35upx;
+	}
+}
+.detail-info{
+	display: flex;
+	align-items: center;
+	.info-box{
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		.info-item{
+			flex: 1;
+			display: flex;
+			padding: 0 20upx;
+			align-items: center;
+			font-size: 30upx;
+			color: #666666;
+			&.info-old-price{
+				font-size: 28upx;
+				text-decoration: line-through;
+				font-style: italic;
+				margin-bottom: 6upx;
+			}
+			&.info-price{
+				color: #c00303;
+				font-size: 32upx;
+				font-weight: bold;
+			}
+		}
+	}
+	.info-count{
+		flex: 1;
+		font-size: 28upx;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding-right: 20upx;
+		color: #666;
+	}
+}
 .detail-title{
 	width: 100%;
 	margin: 0 auto;
@@ -156,9 +227,15 @@
 	color: #fff;
 	font-size: 28upx;
 	line-height: 65upx;
+	padding: 0 20upx;
+	.title-text{
+		width: 100%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
 }
 .detail-img{
-	
 	swiper{
 		height: 450upx;
 	}
@@ -169,11 +246,12 @@
 }
 .text-area{
 	padding: 20upx;
-	font-size: 28upx;
-	color: #727272;
-	line-height: 45upx;
+	padding-bottom: 100upx;
+	display: flex;
+	flex-direction: column;
 	image{
-		max-width: 100%;
+		display: block;
+		width: 100%;
 	}
 }
 </style>

@@ -1,0 +1,25 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+
+/* page,
+view {
+	display: flex;
+} */
+page {
+	min-height: 100%;
+}
+

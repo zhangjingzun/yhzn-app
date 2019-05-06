@@ -1,9 +1,8 @@
-@import "../../common/vendor.wxss";
-
-.map.data-v-2e5f7478 {
+.map.data-v-759fe6fd {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
 }
+

@@ -1,15 +1,14 @@
-@import "../../common/vendor.wxss";
-
-.product-tabs.data-v-1f502fc4 {
+.product-tabs.data-v-789405a3 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   border-bottom: 2rpx solid #dbdbdb;
   height: 80rpx;
   white-space: nowrap;
 }
-.product-tabs .tabs-item.data-v-1f502fc4 {
+.product-tabs .tabs-item.data-v-789405a3 {
   display: inline-block;
   padding: 0 20rpx;
   font-size: 28rpx;
@@ -17,10 +16,19 @@
   font-weight: bold;
   text-align: center;
   line-height: 76rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0 15rpx;
   border-bottom: 4rpx solid transparent;
 }
-.product-tabs .tabs-item.active.data-v-1f502fc4 {
+.product-tabs .tabs-item.active.data-v-789405a3 {
   border-bottom: 4rpx solid #583213;
 }
+.no-data.data-v-789405a3 {
+  font-size: 30rpx;
+  color: #333333;
+  line-height: 60rpx;
+  text-align: center;
+  width: 100%;
+}
+

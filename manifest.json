@@ -1,5 +1,5 @@
 {
-    "name" : "张敬尊",
+    "name" : "yahe",
     "appid" : "__UNI__44964FC",
     "description" : "",
     "versionName" : "1.0.0",
@@ -53,7 +53,8 @@
         "setting" : {
             "es6" : true,
             "postcss" : true,
-            "minified" : true
+            "minified" : true,
+            "urlCheck" : false
         }
     }
 }

@@ -1,3 +1,1 @@
-<template name="8dd66906">
-  <view class="_view data-v-7cde2bc8 product-title"> {{title}} </view>
-</template>
+<template name="30999566"><view class="_view data-v-2b3bba61 product-title"><view class="_view data-v-2b3bba61 title_div">{{title}}</view></view></template>

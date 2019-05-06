@@ -1,37 +1,13 @@
 <template>
 	<view class="shopList">
-		<navigator hover-class="none" :url="'../productDetail/productDetail?id=1'" class="shop-item">
-			<image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode=""></image>
+		<view v-for="item in shopArr" :key="item.id" class="shop-item" @click="gotoDetail(item.id)">
+			<image :src="item.shop_img[0]" mode=""></image>
 			<view class="item-desc">
 				<view class="desc-title">
-					商品标题商品标题商品标题商品标题
+					{{item.shop_name}}
 				</view>
 			</view>
-		</navigator>
-		<navigator hover-class="none" :url="'../productDetail/productDetail?id=1'" class="shop-item">
-			<image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode=""></image>
-			<view class="item-desc">
-				<view class="desc-title">
-					商品标题商品标题商品标题商品标题
-				</view>
-			</view>
-		</navigator>
-		<navigator hover-class="none" :url="'../productDetail/productDetail?id=1'" class="shop-item">
-			<image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode=""></image>
-			<view class="item-desc">
-				<view class="desc-title">
-					商品标题商品标题商品标题商品标题
-				</view>
-			</view>
-		</navigator>
-		<navigator hover-class="none" :url="'../productDetail/productDetail?id=1'" class="shop-item">
-			<image src="https://192.168.1.228:18081/mbxcx/images/shop.png" mode=""></image>
-			<view class="item-desc">
-				<view class="desc-title">
-					商品标题商品标题商品标题商品标题
-				</view>
-			</view>
-		</navigator>
+		</view>
 	</view>
 </template>
 
@@ -43,6 +19,13 @@
 				default() {
 					return []
 				}
+			}
+		},
+		methods: {
+			gotoDetail (id) {
+				uni.navigateTo({
+					url: `../productDetail/productDetail?id=${id}`
+				})
 			}
 		}
 	}
@@ -56,11 +39,7 @@
 	padding-bottom: 20upx;
 	
 	.shop-item{
-		border-bottom: 2upx solid #e6e6e6;
-		border-right: 2upx solid #e6e6e6;
-		// margin-top: 10upx;
 		width: 375upx;
-		// margin-right: 10upx;
 		background-color: #fff;
 		display: flex;
 		justify-content: center;
@@ -68,10 +47,6 @@
 		align-items: center;
 		box-sizing: border-box;
 		padding: 20upx;
-		&:nth-child(2n) {
-			margin-right: 0;
-			border-right: none;
-		}
 		image{
 			width: 335upx;
 			height: 335upx;

@@ -1,29 +1,30 @@
-@import "../../common/vendor.wxss";
-
-.join.data-v-a43a5f04 {
+.join.data-v-26d0b5c3 {
   padding: 30rpx 20rpx;
 }
-.join .form-wrapper.data-v-a43a5f04 {
+.join .form-wrapper.data-v-26d0b5c3 {
   display: -webkit-box;
   display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   height: 75rpx;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-bottom: 2rpx solid #dbdbdb;
 }
-.join .form-wrapper ._input.data-v-a43a5f04 {
+.join .form-wrapper input.data-v-26d0b5c3 {
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-left: 30rpx;
   font-size: 28rpx;
   color: #666666;
 }
-.join .form-button.data-v-a43a5f04 {
+.join .form-button.data-v-26d0b5c3 {
   margin-top: 50rpx;
 }
-.join .form-button ._button.data-v-a43a5f04 {
+.join .form-button button.data-v-26d0b5c3 {
   background-color: #583213;
   color: #fff;
   font-size: 33rpx;
@@ -31,3 +32,4 @@
   height: 65rpx;
   line-height: 65rpx;
 }
+

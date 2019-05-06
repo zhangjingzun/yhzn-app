@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/product/product",
+    "pages/join/join",
+    "pages/about/about",
+    "pages/map/map",
+    "pages/productDetail/productDetail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "zhang",
+    "navigationBarBackgroundColor": "#483213",
+    "backgroundColor": "#483213"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#483213",
+    "borderStyle": "#8a8a8a",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/icon1.png",
+        "selectedIconPath": "static/images/icon1-1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/product/product",
+        "iconPath": "static/images/icon2.png",
+        "selectedIconPath": "static/images/icon2-1.png",
+        "text": "产品中心"
+      },
+      {
+        "pagePath": "pages/join/join",
+        "iconPath": "static/images/icon3.png",
+        "selectedIconPath": "static/images/icon3-1.png",
+        "text": "我要加盟"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "iconPath": "static/images/icon4.png",
+        "selectedIconPath": "static/images/icon4-1.png",
+        "text": "关于我们"
+      }
+    ]
+  },
+  "splashscreen": {
+    "autoclose": true
+  },
+  "appname": "张敬尊"
+}

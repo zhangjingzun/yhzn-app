@@ -1,11 +1,11 @@
 <template>
 	<view class="about">
 		<view class="about-banner">
-			<image src="http://img0.imgtn.bdimg.com/it/u=2844949136,2031078830&fm=27&gp=0.jpg" mode=""></image>
+			<image :src="info.info_img" mode=""></image>
 		</view>
 		<view class="about-tabs">
 			<view class="tabs-btn" :class="{'active': tabsIndex == 0}" @click="changeTabsIndex(0)">
-				公司简介
+				店铺简介
 			</view>
 			<view class="tabs-btn" :class="{'active': tabsIndex == 1}" @click="changeTabsIndex(1)">
 				联系我们
@@ -14,26 +14,26 @@
 		<view class="about-container">
 			<view class="about-content" v-if="tabsIndex == 0">
 				<view class="about-richtext">
-					<wxParse :content="htmlString" :imageProp="imageProp" />
+					{{info.info_desc}}
 				</view>
 			</view>
 			<view class="about-content" v-if="tabsIndex == 1">
 				<view class="about-desc">
-					公司名称：
-					<text>公司名称</text>
+					店铺名称：
+					<text>{{info.info_name}}</text>
 				</view>
 				<view class="about-desc">
 					联系人：
-					<text>联系人</text>
+					<text>{{info.info_user}}</text>
 				</view>
 				<view class="about-desc" @click="callPhone">
 					联系手机：
-					<text>13193690998</text>
+					<text>{{info.info_tel}}</text>
 					<image src="../../static/images/jiantou.png" mode=""></image>
 				</view>
 				<view class="about-desc" @click="goMap">
 					联系地址：
-					<text>地址地址地址地址地址</text>
+					<text>{{info.info_address}}</text>
 					<image src="../../static/images/jiantou.png" mode=""></image>
 				</view>
 			</view>
@@ -44,42 +44,38 @@
 <script>
 	import util from '../../static/assets/util.js';
 	import config from '../../static/assets/config.js';
-	import wxParse from '../../components/wxParseCompontent/wxParse.vue'
 	export default {
-		components: {
-			wxParse,
-		},
 		data() {
 			return {
-				htmlString: '<div>测试数据</div>',
-				imgHost: config.imgPublic,
-				tabsIndex: 0,
-				imageProp: {
-					mode: '',
-					padding: 0,
-					lazyLoad: false,
-					domain: config.richImgHost,
-				},
-				aboutInfo: {}
+				info: {},
+				tabsIndex: 0
 			}
 		},
-		onShow:function(){
-			this.getAbout();
+		onLoad:function() {
+			this.getAbout()
 		},
 		methods: {
 			getAbout() {
+				let _this = this
+				util.ajax({url: config.url.about, type: 'get'}).then(res => {
+					if (res.code == 0) {
+						_this.info = res.data
+					} else {
+						util.showTost('获取失败，请检查网络后重试')
+					}
+				})
 			},
 			changeTabsIndex(index) {
 				this.tabsIndex = index;
 			},
 			callPhone() {
 				uni.makePhoneCall({
-					phoneNumber: '13193690998',
+					phoneNumber: this.info.info_tel,
 				})
 			},
 			goMap() {
 				uni.navigateTo({
-					url: '../map/map'
+					url: `../map/map?lon=${this.info.info_lon}&lat=${this.info.info_lat}`
 				})
 			}
 		},
@@ -119,6 +115,7 @@
 			font-size: 28upx;
 			line-height: 36upx;
 			color: #4C4B4B;
+			text-indent: 56upx;
 		}
 		.about-desc{
 			margin: 0 20upx;

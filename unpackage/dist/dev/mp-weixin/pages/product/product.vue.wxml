@@ -1,10 +1,1 @@
-<import src="/components/productList.vue.wxml" />
-<template name="8adc7e90">
-  <view class="_view data-v-1f502fc4 product">
-    <scroll-view scroll-x="true" class="_scroll-view data-v-1f502fc4 product-tabs">
-      <view class="_view data-v-1f502fc4 tabs-item {{[tabsIndex == index ? 'active' : '']}}" bindtap="handleProxy" wx:key="index" key="{{index}}" data-eventid="{{'3L2-0-'+index}}" data-comkey="{{$k}}" wx:for="{{classicList}}" wx:for-index="index" wx:for-item="item">
-      {{item.text}} </view>
-    </scroll-view>
-    <template data="{{...$root['0'], ...$root[$kk+'tPH-0'],$root}}" is="49b3fc09"></template>
-  </view>
-</template>
+<import src="/components/productList.vue.wxml" /><template name="be151630"><view class="_view data-v-789405a3 product"><scroll-view scroll-x="true" class="_scroll-view data-v-789405a3 product-tabs"><view class="_view data-v-789405a3 tabs-item {{[tabsIndex == index ? 'active' : '']}}" bindtap="handleProxy" wx:key="index" key="{{index}}" data-eventid="{{'be151630-0-'+index}}" data-comkey="{{$k}}" wx:for="{{classicList}}" wx:for-index="index" wx:for-item="item">{{item.class_name}}</view></scroll-view><template data="{{...$root['0'], ...$root[$kk+'be151630-0'],$root}}" is="0d68b860"></template><view class="_view data-v-789405a3 no-data" wx:if="{{isNoData}}">暂无数据</view></view></template>

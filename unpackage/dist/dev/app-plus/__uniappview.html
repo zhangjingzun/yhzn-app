@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8" />
+        <script>
+            var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'))
+            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' + (coverSupport ? ', viewport-fit=cover' : '') + '" />')
+        </script>
+        <title>View</title>
+        <style>
+            * {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            input[type="search"i]::-webkit-search-cancel-button {
+                display: none;
+            }
+
+        </style>
+        <script>
+            var __wxConfig = {"debug":false,"appname":"张敬尊","entryPagePath":"pages/index/index.html","page":{"pages/index/index.html":{"window":{"navigationBarTitleText":"首页"}},"pages/product/product.html":{"window":{"navigationBarTitleText":"产品中心"}},"pages/join/join.html":{"window":{"navigationBarTitleText":"我要加盟"}},"pages/about/about.html":{"window":{"navigationBarTitleText":"关于我们"}},"pages/map/map.html":{"window":{"navigationBarTitleText":"地图"}},"pages/productDetail/productDetail.html":{"window":{"navigationBarTitleText":"产品详情"}}},"global":{"window":{"navigationBarTextStyle":"white","navigationBarTitleText":"zhang","navigationBarBackgroundColor":"#483213","backgroundColor":"#483213"}},"tabBar":{"color":"#8a8a8a","selectedColor":"#483213","backgroundColor":"#ffffff","borderStyle":"#8a8a8a","list":[{"pagePath":"pages/index/index.html","iconPath":"static/images/icon1.png","selectedIconPath":"static/images/icon1-1.png","text":"首页"},{"pagePath":"pages/product/product.html","iconPath":"static/images/icon2.png","selectedIconPath":"static/images/icon2-1.png","text":"产品中心"},{"pagePath":"pages/join/join.html","iconPath":"static/images/icon3.png","selectedIconPath":"static/images/icon3-1.png","text":"我要加盟"},{"pagePath":"pages/about/about.html","iconPath":"static/images/icon4.png","selectedIconPath":"static/images/icon4-1.png","text":"关于我们"}],"position":"bottom"},"networkTimeout":{"request":60000,"connectSocket":60000,"uploadFile":60000,"downloadFile":60000},"platform":"devtools","pages":["pages/index/index","pages/product/product","pages/join/join","pages/about/about","pages/map/map","pages/productDetail/productDetail"],"subPackages":[],"splashscreen":{"autoclose":true}}
+
+        </script>
+        <script>
+            var __id__ = '';
+            window.__dispatchGenerateFunc__ = function(page) {
+                __id__ = page;
+                document.title = page;
+                // window.history.pushState('', '', page);
+                plus.webview.currentWebview().setJsFile('_www/' + page.replace('.html', '.js'));
+            };
+
+        </script>
+        <script src="__uniappes6.js"></script>
+        <script src="uniapp://ready"></script>
+    </head>
+
+    <body>
+        <div></div>
+    </body>
+
+</html>
