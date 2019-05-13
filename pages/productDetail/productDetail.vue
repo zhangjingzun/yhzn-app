@@ -3,7 +3,7 @@
 		<view class="detail-img">
 			<swiper :indicator-dots="true" :autoplay="true" :interval="4000" :duration="1000">
 				<swiper-item v-for="(item, index) in info.shop_img" :key="index">
-					<image :src="item" mode=""></image>
+					<image :src="imgHost+item" mode=""></image>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -27,7 +27,7 @@
 				</view>
 			</view>
 			<view class="info-count">
-				88人已咨询
+				{{info.shop_count}}人已咨询
 			</view>
 		</view>
 		<view class="detail-tabs">
@@ -39,9 +39,9 @@
 			</view>
 		</view>
 		<view class="text-area">
-			<image v-for="(item, index) in info.shop_detail" :key="index" :src="item" mode="widthFix"></image>
+			<image v-for="(item, index) in info.shop_detail" :key="index" :src="imgHost+item" mode="widthFix"></image>
 		</view>
-		<view class="submit-button">
+		<view class="submit-button" @click="contact">
 			点我咨询低价
 		</view>
 	</scroll-view>
@@ -57,16 +57,10 @@
 		},
 		data() {
 			return {
-				htmlString: "<div>测试数据</div>",
 				tabIndex: 0,
-				imgPublic: config.imgPublic,
-				imageProp: {
-					mode: '',
-					padding: 0,
-					lazyLoad: false,
-					domain: config.richImgHost,
-				},
+				imgHost: config.imgHost,
 				info: {},
+				phone: '13193690998',
 				moreImage: []
 			}
 		},
@@ -77,8 +71,23 @@
 			}else {
 				util.returnPrev();
 			}
+			let info = uni.getStorageSync('info')
+			if (info.info_tel) {
+				this.phone = info.info_tel
+			} else {
+				this.getAbout()
+			}
 		},
 		methods:{
+			getAbout() {
+				let _this = this
+				util.ajax({url: config.url.about, type: 'get'}).then(res => {
+					if (res.code == 0) {
+						_this.phone = res.data.info_tel
+						uni.setStorageSync('info', res.data)
+					}
+				})
+			},
 			getInfo(id) {
 				let _this = this
 				util.ajax({url: config.url.productDetail, data: {id: id}}).then((res) => {
@@ -96,6 +105,11 @@
 					} else {
 						util.showTost('网络错误，请稍后重试')
 					}
+				})
+			},
+			contact() {
+				uni.makePhoneCall({
+					phoneNumber: this.phone,
 				})
 			}
 		},

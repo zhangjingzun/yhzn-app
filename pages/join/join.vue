@@ -1,47 +1,55 @@
 <template>
 	<view class="join">
-		<form @submit="formSubmit" @reset="formReset">
-			<view class="form-wrapper">
-				<input type="text" placeholder="请输入您的姓名" name="username" value="" />
-			</view>
-			<view class="form-wrapper">
-				<input type="text" placeholder="请输入您的电话" name="tel" value="" />
-			</view>
-			<view class="form-wrapper">
-				<picker class="picker-item" mode="selector" :range="objList" range-key="text" @change="selectArea">
-					<input type="text" disabled="true" name="area" v-model="area" placeholder="请选择县区" :value="area" />
-				</picker>
-			</view>
-			<view class="form-button">
-				<button type="primary" form-type="submit">提交申请</button>
-			</view>
-		</form>
+		<image v-for="(item, index) in imgList" :key="index" :src="imgHost + item.url" mode="widthFix"></image>
+		<button class="btn" type="warn" @click="contact">立即咨询</button>
 	</view>
 </template>
 
 <script>
+	import util from '../../static/assets/util.js';
+	import config from '../../static/assets/config.js';
 	export default {
 		data() {
 			return {
-				objList: [{
-					text: 'item1'
-				}, {
-					text: 'item2'
-				}, {
-					text: 'item3'
-				}],
+				imgList: [],
 				area: "",
+				imgHost: config.imgHost,
+				phone: '13193690998'
 			}
 		},
 		onLoad(options) {
+			let info = uni.getStorageSync('info')
+			if (info.info_tel) {
+				this.phone = info.info_tel
+			} else {
+				this.getAbout()
+			}
+			this.getImgs()
 		},
 		methods: {
-			selectArea(e) {
-				var i = e.detail.value;
-				this.getArea(i);
+			getAbout() {
+				let _this = this
+				util.ajax({url: config.url.about, type: 'get'}).then(res => {
+					if (res.code == 0) {
+						_this.phone = res.data.info_tel
+						uni.setStorageSync('info', res.data)
+					}
+				})
 			},
-			getArea(index) {
-				this.area = this.objList[index].text;
+			getImgs () {
+				let _this = this
+				util.ajax({url: config.url.propaganda, type: 'get'}).then((res) => {
+					if (res.code == 0) {
+						_this.imgList = res.data
+					} else {
+						util.showTost('请检查网络设置后重试')
+					}
+				})
+			},
+			contact() {
+				uni.makePhoneCall({
+					phoneNumber: this.phone,
+				})
 			}
 		}
 	}
@@ -49,7 +57,18 @@
 
 <style lang="less" scoped>
 .join{
-	padding: 30upx 20upx;
+	padding-bottom: 92upx;
+	.btn{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		border-radius: 0;
+	}
+	image{
+		width: 100%;
+		display: block;
+	}
 	.form-wrapper{
 		display: flex;
 		height: 75upx;

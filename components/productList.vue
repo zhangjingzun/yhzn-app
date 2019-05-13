@@ -1,7 +1,7 @@
 <template>
 	<view class="shopList">
 		<view v-for="item in shopArr" :key="item.id" class="shop-item" @click="gotoDetail(item.id)">
-			<image :src="item.shop_img[0]" mode=""></image>
+			<image :src="imgHost + item.shop_img[0]" mode=""></image>
 			<view class="item-desc">
 				<view class="desc-title">
 					{{item.shop_name}}
@@ -12,13 +12,19 @@
 </template>
 
 <script>
+	import config from '../static/assets/config.js';
 	export default {
 		props:{
 			shopArr: {
 				type: Array,
-				default() {
+				default () {
 					return []
 				}
+			}
+		},
+		data () {
+			return {
+				imgHost: config.imgHost
 			}
 		},
 		methods: {

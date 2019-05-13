@@ -32,6 +32,13 @@
 .index.data-v-e23e6bae {
   background-color: #f2f2f2;
 }
+.index .video.data-v-e23e6bae {
+  width: 100%;
+}
+.index .video video.data-v-e23e6bae {
+  width: 100%;
+  height: 510rpx;
+}
 .index .swiper-box.data-v-e23e6bae {
   width: 100%;
   height: 360rpx;

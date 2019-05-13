@@ -1,7 +1,7 @@
 <template>
 	<view class="about">
 		<view class="about-banner">
-			<image :src="info.info_img" mode=""></image>
+			<image v-if="info.info_img" :src="imgHost+info.info_img" mode=""></image>
 		</view>
 		<view class="about-tabs">
 			<view class="tabs-btn" :class="{'active': tabsIndex == 0}" @click="changeTabsIndex(0)">
@@ -48,11 +48,18 @@
 		data() {
 			return {
 				info: {},
-				tabsIndex: 0
+				tabsIndex: 0,
+				imgHost: config.imgHost
 			}
 		},
 		onLoad:function() {
-			this.getAbout()
+			let info = uni.getStorageSync('info')
+			if (!info) {
+				this.getAbout()
+			} else {
+				this.info = info
+			}
+			
 		},
 		methods: {
 			getAbout() {

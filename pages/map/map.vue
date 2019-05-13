@@ -5,16 +5,37 @@
 </template>
 
 <script>
+	import util from '../../static/assets/util.js';
+	import config from '../../static/assets/config.js';
 	export default {
 		data() {
 			return {
-				
+				lat: 33.510154,
+				lon: 112.430822
 			}
 		},
 		onLoad() {
-			this.locations();
+			let info = uni.getStorageSync('info')
+			if (info.lat) {
+				this.lat = info.info_lat
+				this.lon = info.info_lon
+				this.locations()
+			} else {
+				this.getAbout()
+			}
 		},
 		methods:{
+			getAbout() {
+				let _this = this
+				util.ajax({url: config.url.about, type: 'get'}).then(res => {
+					if (res.code == 0) {
+						_this.lat = res.data.info_lat
+						_this.lon = res.data.info_lon
+						uni.setStorageSync('info', res.data)
+						_this.locations()
+					}
+				})
+			},
 			locations() {
 				uni.openLocation({
 					latitude: 33.510154,

@@ -55,6 +55,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
 var _productList = _interopRequireDefault(__webpack_require__(/*! ../../components/productList.vue */ "D:\\workSpace\\mine\\D2admin\\yhzn\\yhzn-app\\components\\productList.vue"));
 var _productTitle = _interopRequireDefault(__webpack_require__(/*! ../../components/productTitle.vue */ "D:\\workSpace\\mine\\D2admin\\yhzn\\yhzn-app\\components\\productTitle.vue"));
 var _util = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/util.js */ "D:\\workSpace\\mine\\D2admin\\yhzn\\yhzn-app\\static\\assets\\util.js"));
@@ -72,21 +76,29 @@ var _config = _interopRequireDefault(__webpack_require__(/*! ../../static/assets
 
       hotShop: [],
       recShop: [],
-      infoTel: '13193690998' };
+      infoTel: '13193690998',
+      infoVideo: '',
+      imgHost: _config.default.imgHost };
 
   },
   onLoad: function onLoad() {
+    uni.clearStorageSync();
     this.getBannerList();
     this.getHotProduct();
     this.getRecProduct();
     this.getAbout();
   },
   methods: {
+    videoErrorCallback: function videoErrorCallback(e) {
+      this.infoVideo = '';
+    },
     getAbout: function getAbout() {
       var _this = this;
       _util.default.ajax({ url: _config.default.url.about, type: 'get' }).then(function (res) {
         if (res.code == 0) {
           _this.infoTel = res.data.info_tel;
+          _this.infoVideo = res.data.info_video;
+          uni.setStorageSync('info', res.data);
         }
       });
     },
@@ -215,27 +227,47 @@ var render = function() {
             duration: 1000
           }
         },
-        _vm._l(_vm.swiper, function(item, index) {
+        _vm._l(_vm.swiper, function(item, index0) {
           return _c(
             "swiper-item",
-            { key: item.id, attrs: { mpcomid: "162fba24-0-" + index } },
+            { key: item.id, attrs: { mpcomid: "162fba24-0-" + index0 } },
             [
               _c("view", { staticClass: "swiper-item" }, [
-                _c("image", { attrs: { src: item.url, mode: "" } })
+                _c("image", {
+                  attrs: { src: _vm.imgHost + item.url, mode: "" }
+                })
               ])
             ]
           )
         })
       ),
-      _c("proTitle", { attrs: { title: _vm.hotTitle, mpcomid: "162fba24-1" } }),
-      _c("proList", { attrs: { shopArr: _vm.hotShop, mpcomid: "162fba24-2" } }),
-      _c("proTitle", { attrs: { title: _vm.recTitle, mpcomid: "162fba24-3" } }),
-      _c("proList", { attrs: { shopArr: _vm.recShop, mpcomid: "162fba24-4" } }),
+      _vm.infoVideo
+        ? _c("proTitle", {
+            attrs: { title: "视频展示", mpcomid: "162fba24-1" }
+          })
+        : _vm._e(),
+      _vm.infoVideo
+        ? _c("view", { staticClass: "video" }, [
+            _c("video", {
+              attrs: {
+                id: "myVideo",
+                src: _vm.infoVideo,
+                controls: "",
+                eventid: "162fba24-0"
+              },
+              on: { error: _vm.videoErrorCallback }
+            })
+          ])
+        : _vm._e(),
+      _c("proTitle", { attrs: { title: _vm.hotTitle, mpcomid: "162fba24-2" } }),
+      _c("proList", { attrs: { shopArr: _vm.hotShop, mpcomid: "162fba24-3" } }),
+      _c("proTitle", { attrs: { title: _vm.recTitle, mpcomid: "162fba24-4" } }),
+      _c("proList", { attrs: { shopArr: _vm.recShop, mpcomid: "162fba24-5" } }),
       _c(
         "view",
         {
           staticClass: "index-btn",
-          attrs: { eventid: "162fba24-0" },
+          attrs: { eventid: "162fba24-1" },
           on: { click: _vm.contact }
         },
         [_c("view", [_vm._v("我要咨询")])]

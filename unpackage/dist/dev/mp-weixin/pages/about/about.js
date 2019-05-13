@@ -58,11 +58,18 @@ var _config = _interopRequireDefault(__webpack_require__(/*! ../../static/assets
   data: function data() {
     return {
       info: {},
-      tabsIndex: 0 };
+      tabsIndex: 0,
+      imgHost: _config.default.imgHost };
 
   },
   onLoad: function onLoad() {
-    this.getAbout();
+    var info = uni.getStorageSync('info');
+    if (!info) {
+      this.getAbout();
+    } else {
+      this.info = info;
+    }
+
   },
   methods: {
     getAbout: function getAbout() {
@@ -120,7 +127,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("view", { staticClass: "about" }, [
     _c("view", { staticClass: "about-banner" }, [
-      _c("image", { attrs: { src: _vm.info.info_img, mode: "" } })
+      _vm.info.info_img
+        ? _c("image", {
+            attrs: { src: _vm.imgHost + _vm.info.info_img, mode: "" }
+          })
+        : _vm._e()
     ]),
     _c("view", { staticClass: "about-tabs" }, [
       _c(

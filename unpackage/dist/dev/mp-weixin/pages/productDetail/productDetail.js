@@ -1445,7 +1445,7 @@ var _wxParseTemplate = _interopRequireDefault(__webpack_require__(/*! ./componen
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -1504,16 +1504,10 @@ var _util = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/u
 
   data: function data() {
     return {
-      htmlString: "<div>测试数据</div>",
       tabIndex: 0,
-      imgPublic: _config.default.imgPublic,
-      imageProp: {
-        mode: '',
-        padding: 0,
-        lazyLoad: false,
-        domain: _config.default.richImgHost },
-
+      imgHost: _config.default.imgHost,
       info: {},
+      phone: '13193690998',
       moreImage: [] };
 
   },
@@ -1524,8 +1518,23 @@ var _util = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/u
     } else {
       _util.default.returnPrev();
     }
+    var info = uni.getStorageSync('info');
+    if (info.info_tel) {
+      this.phone = info.info_tel;
+    } else {
+      this.getAbout();
+    }
   },
   methods: {
+    getAbout: function getAbout() {
+      var _this = this;
+      _util.default.ajax({ url: _config.default.url.about, type: 'get' }).then(function (res) {
+        if (res.code == 0) {
+          _this.phone = res.data.info_tel;
+          uni.setStorageSync('info', res.data);
+        }
+      });
+    },
     getInfo: function getInfo(id) {
       var _this = this;
       _util.default.ajax({ url: _config.default.url.productDetail, data: { id: id } }).then(function (res) {
@@ -1544,11 +1553,17 @@ var _util = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/u
           _util.default.showTost('网络错误，请稍后重试');
         }
       });
+    },
+    contact: function contact() {
+      uni.makePhoneCall({
+        phoneNumber: this.phone });
+
     } },
 
   onShareAppMessage: function onShareAppMessage() {
 
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 
@@ -3513,13 +3528,13 @@ var render = function() {
     ? _c(
         "div",
         { staticClass: "wxParse", class: _vm.className },
-        _vm._l(_vm.nodes, function(node, index) {
+        _vm._l(_vm.nodes, function(node, index0) {
           return _c(
             "block",
             { key: node.index },
             [
               _c("wxParseTemplate", {
-                attrs: { node: node, mpcomid: "40daa286-0-" + index }
+                attrs: { node: node, mpcomid: "40daa286-0-" + index0 }
               })
             ],
             1
@@ -3572,7 +3587,7 @@ var render = function() {
               return _c(
                 "swiper-item",
                 { key: index, attrs: { mpcomid: "176f300a-0-" + index } },
-                [_c("image", { attrs: { src: item, mode: "" } })]
+                [_c("image", { attrs: { src: _vm.imgHost + item, mode: "" } })]
               )
             })
           )
@@ -3598,7 +3613,9 @@ var render = function() {
             _vm._v("现价:" + _vm._s(_vm.info.shop_price) + "元")
           ])
         ]),
-        _c("view", { staticClass: "info-count" }, [_vm._v("88人已咨询")])
+        _c("view", { staticClass: "info-count" }, [
+          _vm._v(_vm._s(_vm.info.shop_count) + "人已咨询")
+        ])
       ]),
       _c("view", { staticClass: "detail-tabs" }, [
         _c("view", { staticClass: "tabs-item active" }, [
@@ -3614,11 +3631,19 @@ var render = function() {
         _vm._l(_vm.info.shop_detail, function(item, index) {
           return _c("image", {
             key: index,
-            attrs: { src: item, mode: "widthFix" }
+            attrs: { src: _vm.imgHost + item, mode: "widthFix" }
           })
         })
       ),
-      _c("view", { staticClass: "submit-button" }, [_vm._v("点我咨询低价")])
+      _c(
+        "view",
+        {
+          staticClass: "submit-button",
+          attrs: { eventid: "176f300a-0" },
+          on: { click: _vm.contact }
+        },
+        [_vm._v("点我咨询低价")]
+      )
     ]
   )
 }

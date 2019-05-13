@@ -10,7 +10,7 @@
     "urlCheck": false
   },
   "compileType": "miniprogram",
-  "libVersion": "",
+  "libVersion": "2.6.4",
   "appid": "wx4b283a06c66f6b16",
   "projectname": "yahe",
   "condition": {

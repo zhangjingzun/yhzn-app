@@ -3,10 +3,14 @@
 		<swiper class="swiper-box" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 			<swiper-item v-for="item in swiper" :key="item.id">
 				<view class="swiper-item">
-					<image :src="item.url" mode=""></image>
+					<image :src="imgHost+item.url" mode=""></image>
 				</view>
 			</swiper-item>
 		</swiper>
+		<proTitle title="视频展示" v-if="infoVideo" />
+		<view class="video" v-if="infoVideo" >
+			<video id="myVideo" :src="infoVideo" @error="videoErrorCallback" controls></video>
+		</view>
 		<proTitle :title="hotTitle" />
 		<proList :shopArr="hotShop"></proList>
 		<proTitle :title="recTitle" />
@@ -37,21 +41,29 @@
 				],
 				hotShop: [],
 				recShop: [],
-				infoTel: '13193690998'
+				infoTel: '13193690998',
+				infoVideo: '',
+				imgHost: config.imgHost
 			}
 		},
 		onLoad() {
+			uni.clearStorageSync()
 			this.getBannerList()
 			this.getHotProduct()
 			this.getRecProduct()
 			this.getAbout()
 		},
 		methods:{
+			videoErrorCallback: function(e) {
+				this.infoVideo = ''
+			},
 			getAbout() {
 				let _this = this
 				util.ajax({url: config.url.about, type: 'get'}).then(res => {
 					if (res.code == 0) {
 						_this.infoTel = res.data.info_tel
+						_this.infoVideo = res.data.info_video
+						uni.setStorageSync('info', res.data)
 					}
 				})
 			},
@@ -105,6 +117,13 @@
 <style lang="less" scoped>
 	.index{
 		background-color: #f2f2f2;
+		.video{
+			width: 100%;
+			video{
+				width: 100%;
+				height: 510upx;
+			}
+		}
 		.swiper-box{
 			width: 100%;
 			height: 360upx;

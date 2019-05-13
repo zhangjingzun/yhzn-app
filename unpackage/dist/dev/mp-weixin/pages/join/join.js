@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -16,43 +16,52 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var _util = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/util.js */ "D:\\workSpace\\mine\\D2admin\\yhzn\\yhzn-app\\static\\assets\\util.js"));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/config.js */ "D:\\workSpace\\mine\\D2admin\\yhzn\\yhzn-app\\static\\assets\\config.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   data: function data() {
     return {
-      objList: [{
-        text: 'item1' },
-      {
-        text: 'item2' },
-      {
-        text: 'item3' }],
-
-      area: "" };
+      imgList: [],
+      area: "",
+      imgHost: _config.default.imgHost,
+      phone: '13193690998' };
 
   },
   onLoad: function onLoad(options) {
+    var info = uni.getStorageSync('info');
+    if (info.info_tel) {
+      this.phone = info.info_tel;
+    } else {
+      this.getAbout();
+    }
+    this.getImgs();
   },
   methods: {
-    selectArea: function selectArea(e) {
-      var i = e.detail.value;
-      this.getArea(i);
+    getAbout: function getAbout() {
+      var _this = this;
+      _util.default.ajax({ url: _config.default.url.about, type: 'get' }).then(function (res) {
+        if (res.code == 0) {
+          _this.phone = res.data.info_tel;
+          uni.setStorageSync('info', res.data);
+        }
+      });
     },
-    getArea: function getArea(index) {
-      this.area = this.objList[index].text;
+    getImgs: function getImgs() {
+      var _this = this;
+      _util.default.ajax({ url: _config.default.url.propaganda, type: 'get' }).then(function (res) {
+        if (res.code == 0) {
+          _this.imgList = res.data;
+        } else {
+          _util.default.showTost('请检查网络设置后重试');
+        }
+      });
+    },
+    contact: function contact() {
+      uni.makePhoneCall({
+        phoneNumber: this.phone });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
 
 /***/ }),
 
@@ -86,98 +95,23 @@ var render = function() {
     "view",
     { staticClass: "join" },
     [
+      _vm._l(_vm.imgList, function(item, index) {
+        return _c("image", {
+          key: index,
+          attrs: { src: _vm.imgHost + item.url, mode: "widthFix" }
+        })
+      }),
       _c(
-        "form",
+        "button",
         {
-          attrs: { eventid: "42f4fec8-2" },
-          on: { submit: _vm.formSubmit, reset: _vm.formReset }
+          staticClass: "btn",
+          attrs: { type: "warn", eventid: "42f4fec8-0" },
+          on: { click: _vm.contact }
         },
-        [
-          _c("view", { staticClass: "form-wrapper" }, [
-            _c("input", {
-              attrs: {
-                type: "text",
-                placeholder: "请输入您的姓名",
-                name: "username",
-                value: ""
-              }
-            })
-          ]),
-          _c("view", { staticClass: "form-wrapper" }, [
-            _c("input", {
-              attrs: {
-                type: "text",
-                placeholder: "请输入您的电话",
-                name: "tel",
-                value: ""
-              }
-            })
-          ]),
-          _c(
-            "view",
-            { staticClass: "form-wrapper" },
-            [
-              _c(
-                "picker",
-                {
-                  staticClass: "picker-item",
-                  attrs: {
-                    mode: "selector",
-                    range: _vm.objList,
-                    "range-key": "text",
-                    eventid: "42f4fec8-1"
-                  },
-                  on: { change: _vm.selectArea }
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.area,
-                        expression: "area"
-                      }
-                    ],
-                    attrs: {
-                      type: "text",
-                      disabled: "true",
-                      name: "area",
-                      placeholder: "请选择县区",
-                      value: _vm.area,
-                      eventid: "42f4fec8-0"
-                    },
-                    domProps: { value: _vm.area },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.area = $event.target.value
-                      }
-                    }
-                  })
-                ]
-              )
-            ],
-            1
-          ),
-          _c(
-            "view",
-            { staticClass: "form-button" },
-            [
-              _c(
-                "button",
-                { attrs: { type: "primary", "form-type": "submit" } },
-                [_vm._v("提交申请")]
-              )
-            ],
-            1
-          )
-        ]
+        [_vm._v("立即咨询")]
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

@@ -1,6 +1,5 @@
 //静态资源路径 
-var imgHost = "http://192.168.0.102:8089/public/upload/";
-var richImg = "http://192.168.0.102:8089/public/";
+var imgHost = "http://192.168.0.102:8089/";
 //接口路径 
 var host = "http://192.168.0.102:8089";
 var url = {
@@ -12,6 +11,7 @@ var url = {
 	classicList: `${host}/classic/get`,
 	productClassic: `${host}/shop/classic`,
 	about: `${host}/info/get`,
+	propaganda: `${host}/join/get`
 }
 module.exports = {
 	imgHost,

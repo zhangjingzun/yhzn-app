@@ -8,23 +8,44 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
 
 
 
+var _util = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/util.js */ "D:\\workSpace\\mine\\D2admin\\yhzn\\yhzn-app\\static\\assets\\util.js"));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../../static/assets/config.js */ "D:\\workSpace\\mine\\D2admin\\yhzn\\yhzn-app\\static\\assets\\config.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      lat: 33.510154,
+      lon: 112.430822 };
 
   },
   onLoad: function onLoad() {
-    this.locations();
+    var info = uni.getStorageSync('info');
+    if (info.lat) {
+      this.lat = info.info_lat;
+      this.lon = info.info_lon;
+      this.locations();
+    } else {
+      this.getAbout();
+    }
   },
   methods: {
+    getAbout: function getAbout() {
+      var _this = this;
+      _util.default.ajax({ url: _config.default.url.about, type: 'get' }).then(function (res) {
+        if (res.code == 0) {
+          _this.lat = res.data.info_lat;
+          _this.lon = res.data.info_lon;
+          uni.setStorageSync('info', res.data);
+          _this.locations();
+        }
+      });
+    },
     locations: function locations() {
       uni.openLocation({
         latitude: 33.510154,
